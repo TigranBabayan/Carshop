@@ -1,0 +1,180 @@
+﻿@model IEnumerable<CarShop.Models.CarModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Ավելացնել հայտարարություն</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @* @Html.DisplayNameFor(model => model.CarMaker)*@
+                Մակնիշ
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModelName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Modefication)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Year)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bodystyle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mileage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarModelColor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gearbox)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fueltype)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Handdrive)
+            </th>
+            @*<th>
+            @Html.DisplayNameFor(model => model.Customcleared)
+        </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            @*<th>
+            @Html.DisplayNameFor(model => model.CarModelImage)
+        </th>*@
+            @*<th>
+            @Html.DisplayNameFor(model => model.TopAnnouncements)
+        </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.EngineValue)
+            </th>
+            @*<th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.HoursePower)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarModelExteriorColor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DoorCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Drivetrain)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Condition)
+            </th>
+            @*<th>
+            @Html.DisplayNameFor(model => model.Vin)
+        </th>*@
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarMaker.CarName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModelName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Modefication)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bodystyle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mileage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarModelColor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gearbox)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fueltype)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Handdrive)
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.Customcleared)
+        </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.CarModelImage)
+        </td>*@
+            @*<td>
+
+            @{
+                if (item.TopAnnouncements == true)
+                {
+                    <span>Այո</span>
+                }
+                else
+                {
+                    <span>Ոչ</span>
+                }
+            }
+        </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.EngineValue)
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.HoursePower)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarModelExteriorColor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoorCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Drivetrain)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Condition)
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.Vin)
+        </td>*@
+
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id"><span class="fa fa-edit"></span></a>
+                <a asp-action="Details" asp-route-id="@item.Id"><span class="fa fa-eye"></span></a>
+                <a asp-action="Delete" asp-route-id="@item.Id"><span class="fa fa-trash text-danger"></span></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

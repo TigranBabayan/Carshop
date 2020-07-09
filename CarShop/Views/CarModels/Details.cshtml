@@ -1,0 +1,194 @@
+﻿@model CarShop.Models.CarModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>CarModel</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @* @Html.DisplayNameFor(model => model.CarMaker)*@
+            Մակնիշ
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CarMaker.CarName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ModelName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ModelName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Modefication)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Modefication)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Bodystyle)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Bodystyle)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Mileage)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Mileage)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CarModelColor)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CarModelColor)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Gearbox)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Gearbox)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Fueltype)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Fueltype)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Handdrive)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Handdrive)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Customcleared)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Customcleared)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        @*<dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.CarModelImage)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CarModelImage)
+            </dd>*@
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TopAnnouncements)
+        </dt>
+        <dd class="col-sm-10">
+            @{ if (Model.TopAnnouncements == true)
+                {
+                    <span>Այո</span>
+                }
+                else
+                {
+                    <span>Ոչ</span>
+                }
+            }
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.EngineValue)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EngineValue)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.HoursePower)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.HoursePower)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CarModelExteriorColor)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CarModelExteriorColor)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DoorCount)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DoorCount)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Drivetrain)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Drivetrain)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Condition)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Condition)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Vin)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Vin)
+        </dd>
+    </dl>
+
+</div>
+<div class=" row">
+
+    @foreach (var splitedImageName in SplitImageName(Model.CarModelImage))
+    {
+        if (splitedImageName.Length > 0)
+        {
+            <div class="col-lg-4 pb-3">
+                <img src="~/images/@splitedImageName"
+                     class="float-left"
+                     height="200"
+                     asp-append-version="true" />
+            </div>
+        }
+    }
+
+</div>
+
+<div>
+    <a asp-action="Index"><span class="fa fa-arrow-left"></span>Հետ վերադարձ</a> | 
+    <a asp-action="Edit" asp-route-id="@Model.Id">Փոփոխել</a>
+</div>
+
+
+@{
+    List<string> SplitImageName(string ProfilePicture)
+    {
+
+        List<string> imageName = new List<string>();
+ 
+            string[] splitedImageName = ProfilePicture.Split('<');
+            foreach (var imgName in splitedImageName)
+            {
+                imageName.Add(imgName);
+            }
+        
+        return imageName;
+
+    }}

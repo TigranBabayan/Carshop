@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewData["Title"] = "AdminPage";
+}
+
+<h1>AdminPage</h1>
+
+
+<form asp-action="Logout" asp-controller="Admin" asp-anti-forgery="true">
+    <div class="validation" asp-validation-summary="ModelOnly" />
+        <div class="form-group">
+            <input type="submit" value="Ելք" class="btn btn" />
+        </div>
+</form>
+

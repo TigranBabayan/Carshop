@@ -1,0 +1,299 @@
+﻿@model CarShop.Models.CarModel
+
+
+@{
+    List<string> SplitImageName(string ProfilePicture)
+    {
+        List<string> imageName = new List<string>();
+
+
+        string[] splitedImageName = ProfilePicture.Split('<');
+        foreach (var imgName in splitedImageName)
+        {
+            imageName.Add(imgName);
+        }
+
+        return imageName;
+
+    }}
+
+
+
+@*<div id="carouselExampleIndicators" class="carousel slide col-lg-6" data-ride="carousel">
+        <ol class="carousel-indicators">
+            @{var iterator = 0;
+                var active = ""; }
+            @for (int i = 0; i < SplitImageName(Model.CarModelImage).Count - 1; i++)
+            {
+                iterator = i;
+
+                if (i == 0)
+                {
+                    active = "active";
+                }
+
+                <li data-target="#carouselExampleIndicators" data-slide-to="@iterator" class="@active">
+                            <img src="~/images/@SplitImageName(Model.CarModelImage)[@i]" class="d-block w-100 " >
+                </li>
+            }
+
+        </ol>
+        <div class="carousel-inner">
+            @{ var isFirst = true;
+
+                @foreach (var carImg in SplitImageName(Model.CarModelImage))
+                {
+                    <div class="carousel-item @(isFirst ? "active" : "")">
+                        @{isFirst = false;}
+                        @if (carImg.Length > 0)
+                        {
+                        <img src="~/images/@carImg" class="d-block w-100">
+                        }
+
+                    </div>
+                }
+            }
+
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>*@
+
+
+
+
+    <div class="container">
+        <div class="carousel-container col-lg-6 position-relative row float-left">
+
+            <!-- Sorry! Lightbox doesn't work - yet. -->
+
+            <div id="myCarousel" class="carousel slide " data-ride="carousel">
+                <div class="carousel-inner">
+
+                    @{var iterator = 0;
+
+                        @for (int i = 0; i < SplitImageName(Model.CarModelImage).Count - 1; i++)
+                        {
+                            iterator = i;
+                        }
+                    }
+
+                    @{ var isFirst = true;
+
+                        @foreach (var carImg in SplitImageName(Model.CarModelImage))
+                        {
+                            <div class="carousel-item  @(isFirst ? "active" : "")" style="width:100%" data-slide-number="@iterator">
+                                @{isFirst = false;}
+                                @if (carImg.Length > 0)
+                                {
+                                    <img src="~/images/@carImg" class="d-block w-100" data-type="image" data-toggle="lightbox" data-gallery="example-gallery">
+                                }
+
+                            </div>
+                        }
+                    }
+
+                    <a class="carousel-control-prev" href="#carousel-thumbs" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carousel-thumbs" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Carousel Navigation -->
+            <div id="carousel-thumbs my-carousel-thumbs" class="carousel slide myCarousel" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row mx-0">
+
+                            @{
+                                var active = ""; }
+                            @for (int i = 0; i < SplitImageName(Model.CarModelImage).Count - 1; i++)
+                            {
+                                iterator = i;
+
+                                if (i == 0)
+                                {
+                                    active = "active";
+                                }
+
+                                <div id="carousel-selector-@iterator" class="thumb col-4 col-sm-2 px-1 py-2 " data-target="#myCarousel" data-slide-to="@iterator">
+
+                                    <img src="~/images/@SplitImageName(Model.CarModelImage)[@i]" class="img-fluid">
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div> <!-- /row -->
+
+
+        <div class="col-lg-6 float-right">
+            <div>
+                <h4>CarModel</h4>
+                <hr />
+                <dl class="row">
+                    <dt class="col-sm-4">
+                        @* @Html.DisplayNameFor(model => model.CarMaker)*@
+                        Մակնիշ
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.CarMaker.CarName)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.ModelName)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.ModelName)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Modefication)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Modefication)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Year)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Year)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Bodystyle)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Bodystyle)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Mileage)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Mileage)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.CarModelColor)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.CarModelColor)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Gearbox)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Gearbox)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Fueltype)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Fueltype)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Handdrive)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Handdrive)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Customcleared)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Customcleared)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Price)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Price)
+                    </dd>
+                    @*<dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.CarModelImage)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.CarModelImage)
+                    </dd>*@
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.TopAnnouncements)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @{ if (Model.TopAnnouncements == true)
+                            {
+                                <span>Այո</span>
+                            }
+                            else
+                            {
+                                <span>Ոչ</span>
+                            }
+                        }
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.EngineValue)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.EngineValue)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Description)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Description)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.HoursePower)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.HoursePower)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.CarModelExteriorColor)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.CarModelExteriorColor)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.DoorCount)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.DoorCount)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Drivetrain)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Drivetrain)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Condition)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Condition)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Vin)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Vin)
+                    </dd>
+                </dl>
+
+            </div>
+        </div>
+
+    </div>
+
+

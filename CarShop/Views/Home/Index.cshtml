@@ -1,0 +1,42 @@
+﻿@model IEnumerable<CarShop.Models.CarModel>
+
+
+<div class="container">
+    <div class="row">
+        @foreach (var car in Model)
+        {
+            var carImage = SplitImageName(car.CarModelImage).FirstOrDefault();
+
+            if (carImage.Length > 0)
+            {
+                <a asp-controller="Home" asp-action="GetCar" asp-route-id="@car.Id">
+                    <div class="card  mr-1 mb-1 p-0" style="width: 16rem;">
+                        <img class="card-img-top p-0" src="~/images/@carImage" alt="@car.ModelName">
+                        <div class="card-body">
+                            <p class="card-title" style="color:red;font-weight:bold">@car.CarMaker.CarName  @car.ModelName</p>
+                            <p class="card-text">
+                                <span class="float-left" style="font-weight: bold;">@car.Year</span>
+                                <span class="float-right" style="font-weight: bold;">$ @car.Price</span>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            }
+        }
+    </div>
+</div>
+@{
+    List<string> SplitImageName(string ProfilePicture)
+    {
+
+        List<string> imageName = new List<string>();
+
+        string[] splitedImageName = ProfilePicture.Split('<');
+        foreach (var imgName in splitedImageName)
+        {
+            imageName.Add(imgName);
+        }
+
+        return imageName;
+
+    }}
